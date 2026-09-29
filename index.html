@@ -776,7 +776,7 @@ var CONFIG = {
   // Fim da pré-venda (horário de Brasília). Depois disso a contagem some sozinha.
   presaleEndsAt: '2026-10-12T00:00:00-03:00',
   // PIXEL DA META: cole aqui o ID (só números) do Gerenciador de Eventos. Vazio = pixel desligado.
-  metaPixelId: ''
+  metaPixelId: '2095961921005356'
 };
 
 /* Menu fica sólido ao rolar */
@@ -841,20 +841,21 @@ var CONFIG = {
   for(var i=0;i<links.length;i++){var h=links[i].getAttribute('href');links[i].setAttribute('href',h+(h.indexOf('?')>-1?'&':'?')+q);}
 })();
 
-/* Pixel da Meta: carrega DEPOIS da página, para não atrasar nada */
+/* Pixel da Meta: eventos registrados desde o início; o código da Meta só baixa depois da página, para não atrasar nada */
 (function(){
   if(!CONFIG.metaPixelId)return;
-  function load(){
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init',CONFIG.metaPixelId); fbq('track','PageView');
-    var offer=document.getElementById('oferta'),seen=false;
-    if('IntersectionObserver' in window){new IntersectionObserver(function(e){if(e[0].isIntersecting&&!seen){seen=true;fbq('track','ViewContent',{content_name:'ANTÍDOTO',value:197,currency:'BRL'});}},{threshold:.3}).observe(offer);}
-  }
+  var f=window,n;
+  if(!f.fbq){n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];}
+  fbq('init',CONFIG.metaPixelId);
+  fbq('track','PageView');
+  var offer=document.getElementById('oferta'),seen=false;
+  if('IntersectionObserver' in window){new IntersectionObserver(function(e){if(e[0].isIntersecting&&!seen){seen=true;fbq('track','ViewContent',{content_name:'ANTÍDOTO',value:197,currency:'BRL'});}},{threshold:.3}).observe(offer);}
   document.addEventListener('click',function(e){
     var a=e.target.closest&&e.target.closest('a[href*="pay.hotmart.com"]');
-    if(a&&window.fbq)fbq('track','InitiateCheckout',{content_name:'ANTÍDOTO',value:197,currency:'BRL'});
+    if(a)fbq('track','InitiateCheckout',{content_name:'ANTÍDOTO',value:197,currency:'BRL'});
   });
-  if(document.readyState==='complete')setTimeout(load,1500);else window.addEventListener('load',function(){setTimeout(load,1500);});
+  function load(){var t=document.createElement('script');t.async=true;t.src='https://connect.facebook.net/en_US/fbevents.js';document.head.appendChild(t);}
+  if(document.readyState==='complete')setTimeout(load,300);else window.addEventListener('load',function(){setTimeout(load,300);});
 })();
 </script>
 </body>
