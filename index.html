@@ -234,6 +234,8 @@ strong,b{font-weight:600}
   background:radial-gradient(ellipse at 50% 35%,rgba(196,164,104,.18),transparent 60%),radial-gradient(ellipse at 50% 50%,var(--card-2),var(--deep) 80%) center/cover no-repeat;box-shadow:var(--sh-lg)}
 .player{isolation:isolate;transform:translateZ(0)}
 .player.playing{border-color:transparent;background:#000}
+.player .thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.player .play{z-index:2}
 .player iframe{position:absolute;top:-1px;left:-1px;width:calc(100% + 2px);height:calc(100% + 2px);border:0;display:block}
 .play{position:relative;width:84px;height:84px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;background:linear-gradient(180deg,var(--gold-2),var(--gold));box-shadow:var(--sh-gold);transition:transform .26s ease}
 .play:hover{transform:scale(1.06)}
@@ -821,7 +823,7 @@ var CONFIG = {
   var id=pl.getAttribute('data-youtube');
   if(id){
     // capa só carrega perto da seção; menor no celular, mais nítida no computador
-    var setThumb=function(){pl.style.backgroundImage='url(https://i.ytimg.com/vi/'+id+'/'+(window.innerWidth>700?'sddefault':'hqdefault')+'.jpg)';};
+    var setThumb=function(){var im=new Image();im.className='thumb';im.alt='';im.decoding='async';im.src='https://i.ytimg.com/vi/'+id+'/'+(window.innerWidth>700?'sddefault':'hqdefault')+'.jpg';pl.insertBefore(im,pl.firstChild);};
     if('IntersectionObserver' in window){var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){setThumb();io.disconnect();}},{rootMargin:'600px 0px'});io.observe(pl);}else setThumb();
   }
   pl.querySelector('.play').addEventListener('click',function(){
