@@ -852,7 +852,7 @@ var CONFIG = {
   if('IntersectionObserver' in window){new IntersectionObserver(function(e){if(e[0].isIntersecting&&!seen){seen=true;fbq('track','ViewContent',{content_name:'ANTÍDOTO',value:197,currency:'BRL'});}},{threshold:.3}).observe(offer);}
   document.addEventListener('click',function(e){
     var a=e.target.closest&&e.target.closest('a[href*="pay.hotmart.com"]');
-    if(a)fbq('track','InitiateCheckout',{content_name:'ANTÍDOTO',value:197,currency:'BRL'});
+    if(a)fbq('trackCustom','CliqueComprar',{content_name:'ANTÍDOTO',value:197,currency:'BRL'}); // InitiateCheckout fica com o checkout da Hotmart
   });
   function load(){var t=document.createElement('script');t.async=true;t.src='https://connect.facebook.net/en_US/fbevents.js';document.head.appendChild(t);}
   if(document.readyState==='complete')setTimeout(load,300);else window.addEventListener('load',function(){setTimeout(load,300);});
