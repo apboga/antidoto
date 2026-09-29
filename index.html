@@ -601,7 +601,7 @@ footer nav a:hover{color:var(--gold-2)}
     <div class="video-grid">
       <!-- VÍDEO: cole o ID do YouTube em data-youtube (youtube.com/watch?v=ABC123 → data-youtube="ABC123").
            O player só carrega quando a pessoa toca no play, para não pesar a página. -->
-      <div class="player rv" data-youtube="">
+      <div class="player rv" data-youtube="ZyGjuRty0hg">
         <button type="button" class="play" aria-label="Assistir ao vídeo de Ramy Shanaytá"><svg class="i" aria-hidden="true"><use href="#i-play"/></svg></button>
       </div>
       <figure class="v-quote rv d1">
@@ -817,7 +817,11 @@ var CONFIG = {
 (function(){
   var pl=document.querySelector('.player'); if(!pl)return;
   var id=pl.getAttribute('data-youtube');
-  if(id){pl.style.backgroundImage='url(https://i.ytimg.com/vi/'+id+'/hqdefault.jpg)';}
+  if(id){
+    // capa só carrega perto da seção; menor no celular, mais nítida no computador
+    var setThumb=function(){pl.style.backgroundImage='url(https://i.ytimg.com/vi/'+id+'/'+(window.innerWidth>700?'sddefault':'hqdefault')+'.jpg)';};
+    if('IntersectionObserver' in window){var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){setThumb();io.disconnect();}},{rootMargin:'600px 0px'});io.observe(pl);}else setThumb();
+  }
   pl.querySelector('.play').addEventListener('click',function(){
     if(!id)return;
     pl.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1" title="Ramy Shanaytá sobre proteção espiritual" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
