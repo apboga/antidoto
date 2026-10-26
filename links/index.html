@@ -48,17 +48,16 @@ h1{font:500 34px/1.1 var(--serif);letter-spacing:-.01em;margin-top:16px}
 .map{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .tile{position:relative;overflow:hidden;border-radius:18px;aspect-ratio:1/1;text-align:left;color:#fff;background:#222;
   display:flex;flex-direction:column;justify-content:flex-end;padding:14px;transition:transform .2s}
-.tile.w{grid-column:span 2;aspect-ratio:2.2/1}
 .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.tile::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.78))}
+/* mesmo tratamento de cor em todas as fotos, para fotos reais e artes conversarem */
+.tile img,.sheet-h img,.link img{filter:saturate(.8) contrast(1.04) sepia(.1)}
+.tile::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(18,30,22,0) 38%,rgba(18,30,22,.88))}
 .tile>*:not(img){position:relative;z-index:2}
 .tile:hover img{transform:scale(1.04)}
 .tile:active{transform:scale(.98)}
-.tile b{display:block;font:600 16px/1.15 var(--sans)}
-.tile.w b{font:500 26px/1.05 var(--serif)}
-.tile small{display:block;margin-top:3px;font-size:12px;opacity:.85}
+.tile b{display:block;font:500 22px/1.05 var(--serif);letter-spacing:-.01em}
+.tile small{display:block;margin-top:4px;font-size:12px;line-height:1.3;opacity:.82}
 .tile .plus{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.22);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
-.tile .badge{position:absolute;top:12px;left:12px;padding:5px 8px;border-radius:999px;font:800 9.5px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;background:#fff;color:var(--accent)}
 
 /* ---------- janela da categoria ---------- */
 dialog{position:fixed;inset:auto 0 0 0;margin:0 auto;width:100%;max-width:480px;max-height:88vh;padding:0;border:0;border-radius:24px 24px 0 0;background:var(--bg);color:var(--ink);overflow:hidden;display:none;flex-direction:column}
@@ -67,7 +66,7 @@ dialog::backdrop{background:rgba(15,20,16,.55);-webkit-backdrop-filter:blur(3px)
 @keyframes up{from{transform:translateY(40px);opacity:0}}
 .sheet-h{position:relative;height:120px;flex:none;color:#fff;display:flex;align-items:flex-end;padding:16px 18px}
 .sheet-h img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.sheet-h::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.7))}
+.sheet-h::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(18,30,22,.1),rgba(18,30,22,.82))}
 .sheet-h h3{position:relative;z-index:2;font:500 28px/1 var(--serif)}
 .sheet-h::after{content:"";position:absolute;z-index:2;top:8px;left:50%;transform:translateX(-50%);width:40px;height:4px;border-radius:4px;background:rgba(255,255,255,.7)}
 .close{position:absolute;z-index:3;top:12px;right:12px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(0,0,0,.35);color:#fff}
@@ -86,11 +85,10 @@ a.link:hover{transform:translateY(-1px);box-shadow:0 10px 24px -14px rgba(28,33,
 .link.soon .chev{font:700 10px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase}
 
 /* WhatsApp: ícone oficial no lugar da foto */
-.tile.wa,.sheet-h.wa{background:#25d366}
-.tile.wa::before{background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.28))}
+.tile.wa,.sheet-h.wa{background:radial-gradient(circle at 50% 38%,#2f5a40,var(--accent) 70%)}
 .sheet-h.wa::before{background:none}
-.wa-logo,.tile>.wa-logo,.sheet-h>.wa-logo{position:absolute;z-index:2;left:50%;top:36%;width:52px;height:52px;transform:translate(-50%,-50%);color:#fff}
-.sheet-h.wa .wa-logo{left:auto;right:64px;top:50%}
+.wa-logo,.tile>.wa-logo,.sheet-h>.wa-logo{position:absolute;z-index:2;left:50%;top:38%;width:64px;height:64px;padding:14px;border-radius:50%;background:#25d366;transform:translate(-50%,-50%);color:#fff;box-shadow:0 10px 24px -8px rgba(0,0,0,.4)}
+.sheet-h.wa .wa-logo{left:auto;right:70px;top:50%}
 .wa-thumb{width:56px;height:56px;border-radius:12px;flex:none;display:grid;place-items:center;background:#25d366;color:#fff}
 
 footer{margin-top:30px;text-align:center;font-size:12px;color:var(--ink-3)}
@@ -136,45 +134,45 @@ footer{margin-top:30px;text-align:center;font-size:12px;color:var(--ink-3)}
 
   <div class="map-h"><h2>Explore</h2><span>Toque para abrir</span></div>
   <div class="map">
-    <button class="tile w" data-open="atendimentos">
-      <img src="img/c-atendimentos.webp" alt="" width="960" height="400">
+    <button class="tile" data-open="atendimentos">
+      <img src="img/c-atendimentos.webp" alt="" width="480" height="480">
       <span class="plus"><svg width="16" height="16"><use href="#plus"/></svg></span>
-      <b>Atendimentos</b><small>Terapia xamânica com Ramy</small>
+      <b>Atendimentos</b><small>Terapia xamânica</small>
     </button>
     <button class="tile" data-open="gratuita">
-      <img src="img/c-gratuita.webp" alt="" width="640" height="400">
-      <span class="badge">Grátis</span><span class="plus"><svg width="16" height="16"><use href="#plus"/></svg></span>
-      <b>Atividade espiritual gratuita</b><small>Jardim da Saúde, SP</small>
+      <img src="img/c-gratuita.webp" alt="" width="480" height="480">
+      <span class="plus"><svg width="16" height="16"><use href="#plus"/></svg></span>
+      <b>Atividade gratuita</b><small>Espiritual · aberta a todos</small>
     </button>
     <button class="tile wa" data-open="whatsapp">
-      <svg class="wa-logo" width="64" height="64" aria-hidden="true"><use href="#i-wa"/></svg>
+      <svg class="wa-logo" width="36" height="36" aria-hidden="true"><use href="#i-wa"/></svg>
       <span class="plus"><svg width="16" height="16"><use href="#plus"/></svg></span>
       <b>WhatsApp</b><small>Fale com a equipe</small>
     </button>
     <button class="tile" data-open="grupo">
       <img src="img/c-grupo.webp" alt="" width="640" height="400">
       <span class="plus"><svg width="16" height="16"><use href="#plus"/></svg></span>
-      <b>Grupo fechado</b><small>Comunidade Xamã Cientista</small>
+      <b>Grupo fechado</b><small>Comunidade no WhatsApp</small>
     </button>
     <button class="tile" data-open="lives">
       <img src="img/c-lives.webp" alt="" width="480" height="480">
       <span class="plus"><svg width="16" height="16"><use href="#plus"/></svg></span>
       <b>Lives</b><small>Instagram e YouTube</small>
     </button>
-    <button class="tile w" data-open="cursos">
-      <img src="img/c-cursos.webp" alt="" width="960" height="400">
+    <button class="tile" data-open="cursos">
+      <img src="img/c-cursos.webp" alt="" width="480" height="480">
       <span class="plus"><svg width="16" height="16"><use href="#plus"/></svg></span>
-      <b>Cursos on-line</b><small>8 cursos com Ramy Shanaytá</small>
+      <b>Cursos on-line</b><small>8 cursos</small>
     </button>
     <button class="tile" data-open="presenciais">
       <img src="img/c-presenciais.webp" alt="" width="640" height="400">
       <span class="plus"><svg width="16" height="16"><use href="#plus"/></svg></span>
-      <b>Cursos presenciais</b><small>São Paulo</small>
+      <b>Cursos presenciais</b><small>Turmas em São Paulo</small>
     </button>
     <button class="tile" data-open="loja">
       <img src="img/c-loja.webp" alt="" width="640" height="400">
       <span class="plus"><svg width="16" height="16"><use href="#plus"/></svg></span>
-      <b>Loja</b><small>Magia Xamânica</small>
+      <b>Loja</b><small>Florais e extratos</small>
     </button>
   </div>
 
@@ -184,7 +182,7 @@ footer{margin-top:30px;text-align:center;font-size:12px;color:var(--ink-3)}
 <!-- ================= JANELAS DAS CATEGORIAS ================= -->
 
 <dialog id="atendimentos" aria-label="Atendimentos">
-  <div class="sheet-h"><img src="img/c-atendimentos.webp" alt=""><h3>Atendimentos</h3><button class="close" aria-label="Fechar"><svg width="16" height="16"><use href="#x"/></svg></button></div>
+  <div class="sheet-h"><img src="img/c-atendimentos-w.webp" alt=""><h3>Atendimentos</h3><button class="close" aria-label="Fechar"><svg width="16" height="16"><use href="#x"/></svg></button></div>
   <div class="sheet-b">
     <a class="link" href="https://xamacientista.com/orientacao-terapeutica" target="_blank" rel="noopener">
       <img src="img/t-orientacao.webp" alt="" loading="lazy"><span class="txt"><strong>Orientação Terapêutica</strong><small>Terapia xamânica com avaliação do Ramy</small></span><svg class="chev" width="18" height="18"><use href="#chev"/></svg>
@@ -196,7 +194,7 @@ footer{margin-top:30px;text-align:center;font-size:12px;color:var(--ink-3)}
 </dialog>
 
 <dialog id="gratuita" aria-label="Atividade espiritual gratuita">
-  <div class="sheet-h"><img src="img/c-gratuita.webp" alt=""><h3>Atividade gratuita</h3><button class="close" aria-label="Fechar"><svg width="16" height="16"><use href="#x"/></svg></button></div>
+  <div class="sheet-h"><img src="img/c-gratuita-w.webp" alt=""><h3>Atividade gratuita</h3><button class="close" aria-label="Fechar"><svg width="16" height="16"><use href="#x"/></svg></button></div>
   <div class="sheet-b">
     <a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=Rua+Juvenal+Galeno%2C+264+-+Jardim+da+Sa%C3%BAde%2C+S%C3%A3o+Paulo+-+SP" target="_blank" rel="noopener">
       <img src="img/t-gratuita.webp" alt="" loading="lazy"><span class="txt"><strong>Como chegar <span class="tag">Grátis</span></strong><small>Rua Juvenal Galeno, 264 · Jardim da Saúde, São Paulo</small></span><svg class="chev" width="18" height="18"><use href="#chev"/></svg>
@@ -205,7 +203,7 @@ footer{margin-top:30px;text-align:center;font-size:12px;color:var(--ink-3)}
 </dialog>
 
 <dialog id="whatsapp" aria-label="WhatsApp">
-  <div class="sheet-h wa"><svg class="wa-logo" width="56" height="56" aria-hidden="true"><use href="#i-wa"/></svg><h3>WhatsApp</h3><button class="close" aria-label="Fechar"><svg width="16" height="16"><use href="#x"/></svg></button></div>
+  <div class="sheet-h wa"><svg class="wa-logo" width="36" height="36" aria-hidden="true"><use href="#i-wa"/></svg><h3>WhatsApp</h3><button class="close" aria-label="Fechar"><svg width="16" height="16"><use href="#x"/></svg></button></div>
   <div class="sheet-b">
     <a class="link" href="https://wa.me/5511956067837?text=Ol%C3%A1!%20Vim%20pelo%20link%20do%20Instagram." target="_blank" rel="noopener">
       <span class="wa-thumb"><svg width="30" height="30"><use href="#i-wa"/></svg></span><span class="txt"><strong>Fale com a equipe</strong><small>(11) 95606-7837</small></span><svg class="chev" width="18" height="18"><use href="#chev"/></svg>
@@ -235,7 +233,7 @@ footer{margin-top:30px;text-align:center;font-size:12px;color:var(--ink-3)}
 </dialog>
 
 <dialog id="cursos" aria-label="Cursos on-line">
-  <div class="sheet-h"><img src="img/c-cursos.webp" alt=""><h3>Cursos on-line</h3><button class="close" aria-label="Fechar"><svg width="16" height="16"><use href="#x"/></svg></button></div>
+  <div class="sheet-h"><img src="img/c-cursos-w.webp" alt=""><h3>Cursos on-line</h3><button class="close" aria-label="Fechar"><svg width="16" height="16"><use href="#x"/></svg></button></div>
   <div class="sheet-b">
     <a class="link" href="https://antidoto.magiadafloresta.online/" target="_blank" rel="noopener">
       <img src="img/t-antidoto.webp" alt="" loading="lazy"><span class="txt"><strong>Antídoto <span class="tag">Novo</span></strong><small>Proteção contra ataques espirituais</small></span><svg class="chev" width="18" height="18"><use href="#chev"/></svg>
