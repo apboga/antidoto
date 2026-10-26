@@ -49,9 +49,8 @@ h1{font:500 34px/1.1 var(--serif);letter-spacing:-.01em;margin-top:16px}
 .tile{position:relative;overflow:hidden;border-radius:18px;aspect-ratio:1/1;text-align:left;color:#fff;background:#222;
   display:flex;flex-direction:column;justify-content:flex-end;padding:14px;transition:transform .2s}
 .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
-/* mesmo tratamento de cor em todas as fotos, para fotos reais e artes conversarem */
-.tile img,.sheet-h img,.link img{filter:saturate(.8) contrast(1.04) sepia(.1)}
-.tile::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(18,30,22,0) 38%,rgba(18,30,22,.88))}
+/* as fotos já saem com o mesmo tom (duotone quente), feito na exportação das imagens */
+.tile::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(26,23,18,0) 38%,rgba(26,23,18,.88))}
 .tile>*:not(img){position:relative;z-index:2}
 .tile:hover img{transform:scale(1.04)}
 .tile:active{transform:scale(.98)}
@@ -66,7 +65,7 @@ dialog::backdrop{background:rgba(15,20,16,.55);-webkit-backdrop-filter:blur(3px)
 @keyframes up{from{transform:translateY(40px);opacity:0}}
 .sheet-h{position:relative;height:120px;flex:none;color:#fff;display:flex;align-items:flex-end;padding:16px 18px}
 .sheet-h img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.sheet-h::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(18,30,22,.1),rgba(18,30,22,.82))}
+.sheet-h::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(26,23,18,.1),rgba(26,23,18,.82))}
 .sheet-h h3{position:relative;z-index:2;font:500 28px/1 var(--serif)}
 .sheet-h::after{content:"";position:absolute;z-index:2;top:8px;left:50%;transform:translateX(-50%);width:40px;height:4px;border-radius:4px;background:rgba(255,255,255,.7)}
 .close{position:absolute;z-index:3;top:12px;right:12px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(0,0,0,.35);color:#fff}
@@ -85,7 +84,7 @@ a.link:hover{transform:translateY(-1px);box-shadow:0 10px 24px -14px rgba(28,33,
 .link.soon .chev{font:700 10px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase}
 
 /* WhatsApp: ícone oficial no lugar da foto */
-.tile.wa,.sheet-h.wa{background:radial-gradient(circle at 50% 38%,#2f5a40,var(--accent) 70%)}
+.tile.wa,.sheet-h.wa{background:radial-gradient(circle at 50% 38%,#5a5040,#2a261f 72%)}
 .sheet-h.wa::before{background:none}
 .wa-logo,.tile>.wa-logo,.sheet-h>.wa-logo{position:absolute;z-index:2;left:50%;top:38%;width:64px;height:64px;padding:14px;border-radius:50%;background:#25d366;transform:translate(-50%,-50%);color:#fff;box-shadow:0 10px 24px -8px rgba(0,0,0,.4)}
 .sheet-h.wa .wa-logo{left:auto;right:70px;top:50%}
@@ -152,7 +151,7 @@ footer{margin-top:30px;text-align:center;font-size:12px;color:var(--ink-3)}
     <button class="tile" data-open="grupo">
       <img src="img/c-grupo.webp" alt="" width="640" height="400">
       <span class="plus"><svg width="16" height="16"><use href="#plus"/></svg></span>
-      <b>Grupo fechado</b><small>Comunidade no WhatsApp</small>
+      <b>Grupo fechado</b><small>Comunidade</small>
     </button>
     <button class="tile" data-open="lives">
       <img src="img/c-lives.webp" alt="" width="480" height="480">
