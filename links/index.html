@@ -85,6 +85,14 @@ a.link:hover{transform:translateY(-1px);box-shadow:0 10px 24px -14px rgba(28,33,
 .link.soon{background:transparent;border-style:dashed;color:var(--ink-2)}
 .link.soon .chev{font:700 10px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase}
 
+/* WhatsApp: ícone oficial no lugar da foto */
+.tile.wa,.sheet-h.wa{background:#25d366}
+.tile.wa::before{background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.28))}
+.sheet-h.wa::before{background:none}
+.wa-logo,.tile>.wa-logo,.sheet-h>.wa-logo{position:absolute;z-index:2;left:50%;top:36%;width:52px;height:52px;transform:translate(-50%,-50%);color:#fff}
+.sheet-h.wa .wa-logo{left:auto;right:64px;top:50%}
+.wa-thumb{width:56px;height:56px;border-radius:12px;flex:none;display:grid;place-items:center;background:#25d366;color:#fff}
+
 footer{margin-top:30px;text-align:center;font-size:12px;color:var(--ink-3)}
 .toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;background:var(--ink);color:#fff;padding:10px 16px;border-radius:999px;font:600 13px/1 var(--sans);transition:.3s;pointer-events:none;z-index:9}
 .toast.show{opacity:1;transform:translate(-50%,0)}
@@ -138,8 +146,8 @@ footer{margin-top:30px;text-align:center;font-size:12px;color:var(--ink-3)}
       <span class="badge">Grátis</span><span class="plus"><svg width="16" height="16"><use href="#plus"/></svg></span>
       <b>Atividade espiritual gratuita</b><small>Jardim da Saúde, SP</small>
     </button>
-    <button class="tile" data-open="whatsapp">
-      <img src="img/c-whatsapp.webp" alt="" width="640" height="400">
+    <button class="tile wa" data-open="whatsapp">
+      <svg class="wa-logo" width="64" height="64" aria-hidden="true"><use href="#i-wa"/></svg>
       <span class="plus"><svg width="16" height="16"><use href="#plus"/></svg></span>
       <b>WhatsApp</b><small>Fale com a equipe</small>
     </button>
@@ -149,7 +157,7 @@ footer{margin-top:30px;text-align:center;font-size:12px;color:var(--ink-3)}
       <b>Grupo fechado</b><small>Comunidade Xamã Cientista</small>
     </button>
     <button class="tile" data-open="lives">
-      <img src="img/c-lives.webp" alt="" width="640" height="400">
+      <img src="img/c-lives.webp" alt="" width="480" height="480">
       <span class="plus"><svg width="16" height="16"><use href="#plus"/></svg></span>
       <b>Lives</b><small>Instagram e YouTube</small>
     </button>
@@ -197,10 +205,10 @@ footer{margin-top:30px;text-align:center;font-size:12px;color:var(--ink-3)}
 </dialog>
 
 <dialog id="whatsapp" aria-label="WhatsApp">
-  <div class="sheet-h"><img src="img/c-whatsapp.webp" alt=""><h3>WhatsApp</h3><button class="close" aria-label="Fechar"><svg width="16" height="16"><use href="#x"/></svg></button></div>
+  <div class="sheet-h wa"><svg class="wa-logo" width="56" height="56" aria-hidden="true"><use href="#i-wa"/></svg><h3>WhatsApp</h3><button class="close" aria-label="Fechar"><svg width="16" height="16"><use href="#x"/></svg></button></div>
   <div class="sheet-b">
     <a class="link" href="https://wa.me/5511956067837?text=Ol%C3%A1!%20Vim%20pelo%20link%20do%20Instagram." target="_blank" rel="noopener">
-      <img src="img/t-whatsapp.webp" alt="" loading="lazy"><span class="txt"><strong>Fale com a equipe</strong><small>(11) 95606-7837</small></span><svg class="chev" width="18" height="18"><use href="#chev"/></svg>
+      <span class="wa-thumb"><svg width="30" height="30"><use href="#i-wa"/></svg></span><span class="txt"><strong>Fale com a equipe</strong><small>(11) 95606-7837</small></span><svg class="chev" width="18" height="18"><use href="#chev"/></svg>
     </a>
   </div>
 </dialog>
@@ -215,7 +223,7 @@ footer{margin-top:30px;text-align:center;font-size:12px;color:var(--ink-3)}
 </dialog>
 
 <dialog id="lives" aria-label="Lives">
-  <div class="sheet-h"><img src="img/c-lives.webp" alt=""><h3>Lives</h3><button class="close" aria-label="Fechar"><svg width="16" height="16"><use href="#x"/></svg></button></div>
+  <div class="sheet-h"><img src="img/c-lives-w.webp" alt=""><h3>Lives</h3><button class="close" aria-label="Fechar"><svg width="16" height="16"><use href="#x"/></svg></button></div>
   <div class="sheet-b">
     <a class="link" href="https://www.instagram.com/xamacientista/" target="_blank" rel="noopener">
       <img src="img/t-instagram.webp" alt="" loading="lazy"><span class="txt"><strong>Instagram</strong><small>@xamacientista</small></span><svg class="chev" width="18" height="18"><use href="#chev"/></svg>
